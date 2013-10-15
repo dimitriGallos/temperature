@@ -1,5 +1,5 @@
 /** 
- * @author Aditya Mahajan <aditya.mahajan@mcgill.ca>
+ * @author Aditya Mahajan <aditya.mahajan@mcgill.ca> , Dimitri Gallos <dimitrios.gallos@mail.mcgill.ca>
  * @version 2013.10.06
  * Program for ECSE 321, Assignment 2, Fall 2013
  */
@@ -55,13 +55,24 @@ public class Temperature {
 
   protected double convertToKelvin(double value) {
       double convertedValue;
+      //added exception handling for values that aren't physically possible
 
       switch (units) {
-          case KELVIN:     convertedValue = value;
+          case KELVIN:     if (value < 0) {
+        	  			   		throw new IllegalArgumentException();
+                            }
+        	               convertedValue = value;
                            break;
-          case CELSIUS:    convertedValue = value + 273.15;
+          case CELSIUS:    if (value < -273.15) {
+        	  					throw new IllegalArgumentException();
+          					}
+        	  			   convertedValue = value + 273.15;
                            break;
-          case FAHRENHEIT: convertedValue = (value + 459.67) * 5.0/9.0;
+          case FAHRENHEIT: if (value < -459.67) {
+        	               		throw new IllegalArgumentException();
+          					}
+        	  
+        	  			   convertedValue = (value + 459.67) * 5.0/9.0;
                            break;
           default:         throw new IllegalArgumentException();
       }
@@ -74,13 +85,23 @@ public class Temperature {
    */
   protected double convertFromKelvin(double value) {
       double convertedValue;
+      // Added exception handling for temperatures not physically possible
 
       switch (units) {
-          case KELVIN:     convertedValue = value;
+          case KELVIN:     if (value < 0) {
+		   				   throw new IllegalArgumentException();
+                           }
+        	  			   convertedValue = value;
                            break;
-          case CELSIUS:    convertedValue = value - 273.15;
+          case CELSIUS:    if (value < 0) {
+		   		           throw new IllegalArgumentException();
+                           }
+                           convertedValue = value - 273.15;
                            break;
-          case FAHRENHEIT: convertedValue = value * 9.0/5.0 - 459.67;
+          case FAHRENHEIT: if (value < 0) {
+		   		           throw new IllegalArgumentException();
+                           }
+                           convertedValue = value * 9.0/5.0 - 459.67;
                            break;
           default:         throw new IllegalArgumentException();
       }
