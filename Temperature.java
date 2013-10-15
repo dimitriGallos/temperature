@@ -89,17 +89,17 @@ public class Temperature {
 
       switch (units) {
           case KELVIN:     if (value < 0) {
-		   				   throw new IllegalArgumentException();
+		   				   		throw new IllegalArgumentException();
                            }
         	  			   convertedValue = value;
                            break;
           case CELSIUS:    if (value < 0) {
-		   		           throw new IllegalArgumentException();
+		   		           		throw new IllegalArgumentException();
                            }
                            convertedValue = value - 273.15;
                            break;
           case FAHRENHEIT: if (value < 0) {
-		   		           throw new IllegalArgumentException();
+		   		           		throw new IllegalArgumentException();
                            }
                            convertedValue = value * 9.0/5.0 - 459.67;
                            break;
